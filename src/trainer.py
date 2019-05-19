@@ -80,7 +80,7 @@ class Trainer():
         self.model.eval()
 
         timer_test = utility.timer()
-        if self.args.save_results: self.ckp.begin_background()
+        #if self.args.save_results: self.ckp.begin_background()
         for idx_data, d in enumerate(self.loader_test):
             for idx_scale, scale in enumerate(self.scale):
                 d.dataset.set_scale(idx_scale)
@@ -114,8 +114,8 @@ class Trainer():
         self.ckp.write_log('Forward: {:.2f}s\n'.format(timer_test.toc()))
         self.ckp.write_log('Saving...')
 
-        if self.args.save_results:
-            self.ckp.end_background()
+        #if self.args.save_results:
+        #    self.ckp.end_background()
 
         if not self.args.test_only:
             self.ckp.save(self, epoch, is_best=(best[1][0, 0] + 1 == epoch))
